@@ -80,8 +80,9 @@ class TextInput(metaclass=ABCMeta):
         self.width=width
         self.height=height
         self.letters_per_line=letters_per_line
-        self.background_gif=background_gif
-        self.new_msg='' #This string stores text stream going into text ox.
+        self.background_gif=backgro
+        und_gif
+        self.new_msg='' #This string stores text stream going into text box.
         self.pos=pos
         self.writer=turtle.clone()
         self.writer.hideturtle()
