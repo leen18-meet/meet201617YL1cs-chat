@@ -57,8 +57,9 @@ class TextBox (TextInput):
         self.writer.penup()
         self.writer.goto(-200,100)
         self.writer.pendown()
-        self.writer.write(input())
-
+        self.writer.clear()
+        self.writer.write(self.new_msg)
+        
 
 
 #####################################################################################
@@ -115,6 +116,15 @@ class View:
         :param username: the name of this chat user
         :param partner_name: the name of the user you are chatting with
         '''
+        self.username=username
+        self.partner_name=partner_name
+
+        my_client=Client()
+        self.my_client =my_client
+
+        turtle.setup(width= self._SCREEN_WIDTH , height=self._SCREEN_HEIGHT )
+        
+        
         ###
         #Store the username and partner_name into the instance.
         ###
@@ -134,7 +144,7 @@ class View:
         #
         #at the Python shell.
         ###
-
+        
         ###
         #This list will store all of the messages.
         #You can add strings to the front of the list using
@@ -143,7 +153,34 @@ class View:
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
         ###
+        writer0=turtle.clone()
+        writer0.goto(_LINE_SPACING)
+        writer1=turtle.clone()
+        writer1.goto(_LINE_SPACING +10)
+        writer2=turtle.clone()
+        writer2.goto(_LINE_SPACING +10)
+        writer3=turtle.clone()
+        writer3.goto(_LINE_SPACING +10)
+        writer4=turtle.clone()
+        writer4.goto(_LINE_SPACING +10)
 
+        writer0.clear()
+        writer1.clear()
+        writer2.clear()
+        writer3.clear()
+        writer4.clear()
+        
+        writer0.write(self.msg_queue[0])
+        writer1.write(self.msg_queue[1])
+        writer2.write(self.msg_queue[2])
+        writer3.write(self.msg_queue[3])
+        writer4.write(self.msg_queue[4])
+
+        
+        
+        
+        
+        
         ###
         #Create one turtle object for each message to display.
         #You can use the clear() and write() methods to erase
