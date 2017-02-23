@@ -153,8 +153,11 @@ class View:
         #   self.msg_queue.append(a_msg_string)
         self.msg_queue=[]
         ###
-        writer0=turtle.clone()
-        writer0.goto(_LINE_SPACING)
+        self.writer0=turtle.clone()
+        self.writer0.goto(0,10)
+
+        
+        '''
         writer1=turtle.clone()
         writer1.goto(_LINE_SPACING +10)
         writer2=turtle.clone()
@@ -163,19 +166,10 @@ class View:
         writer3.goto(_LINE_SPACING +10)
         writer4=turtle.clone()
         writer4.goto(_LINE_SPACING +10)
-
-        writer0.clear()
-        writer1.clear()
-        writer2.clear()
-        writer3.clear()
-        writer4.clear()
+        '''
         
-        writer0.write(self.msg_queue[0])
-        writer1.write(self.msg_queue[1])
-        writer2.write(self.msg_queue[2])
-        writer3.write(self.msg_queue[3])
-        writer4.write(self.msg_queue[4])
-
+        self.text1=TextBox()
+        self.Button1=SendButton(self)
         
         
         
@@ -248,7 +242,17 @@ class View:
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-        pass
+        self.writer0.clear()
+        #writer1.clear()
+        #writer2.clear()
+        #writer3.clear()
+        #writer4.clear()
+        
+        self.writer0.write(self.msg_queue[0])
+        #writer1.write(self.msg_queue[1])
+        #writer2.write(self.msg_queue[2])
+        #writer3.write(self.msg_queue[3])
+        #writer4.write(self.msg_queue[4])
 
     def get_client(self):
         return self.my_client
