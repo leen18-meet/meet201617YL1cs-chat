@@ -42,20 +42,20 @@ from turtle_chat_widgets import Button , TextInput
 
 class TextBox (TextInput):
     def draw_box(self):
-        self.pos=(-200,-200)
+        self.pos=(0,0)
         turtle.hideturtle()
         self.writer=turtle.clone()
         self.writer.penup()
         self.writer.goto(self.pos)
         self.writer.pendown()
-        self.writer.goto(self.width,-200)
+        self.writer.goto(self.width,0)
         self.writer.goto(self.width,self.height)
-        self.writer.goto(-200,self.height)
+        self.writer.goto(0,self.height)
         self.writer.goto(self.pos)
 
     def write_msg(self):
         self.writer.penup()
-        self.writer.goto(-200,100)
+        self.writer.goto(0,0)
         self.writer.pendown()
         self.writer.clear()
         self.writer.write(self.new_msg)
@@ -76,7 +76,7 @@ class TextBox (TextInput):
 #    you will need to call the send method of your Client instance
 # 2. update the messages that you see on the screen
 #
-#HINT: You may want to override the __init__ method so that it takes one additional
+#HINT: You may want to override the __init__ method so that it takes one additional(extra)
 #      input: view.  This will be an instance of the View class you will make next
 #      That class will have methods inside of it to help
 #      you send messages and update message displays.
@@ -98,7 +98,7 @@ class SendButton(Button):
 
 ##################################################################
 #                             View                               #
-##################################################################
+#########################################'#########################
 #Make a new class called View.  It does not need to have a parent
 #class mentioned explicitly.
 #
@@ -201,7 +201,11 @@ class View:
         It should call self.display_msg() to cause the message
         display to be updated.
         '''
-        pass
+        self.my_client.send(self.text1.new_msg)
+        self.msg_queue.insert(0,self.text1.new_msg)
+        self.text1.clear_msg()
+        self.display_msg()
+        
 
     def get_msg(self):
         return self.textbox.get_msg()
@@ -232,6 +236,10 @@ class View:
         '''
         print(msg) #Debug - print message
         show_this_msg=self.partner_name+' says:\r'+ msg
+        
+        self.msg_queue.insert(0,self.text1.new_msg)
+        self.display_msg()
+        
         #Add the message to the queue either using insert (to put at the beginning)
         #or append (to put at the end).
         #
