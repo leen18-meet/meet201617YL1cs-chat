@@ -1,3 +1,4 @@
+
 #2016-2017 PERSONAL PROJECTS: TurtleChat!
 #WRITE YOUR NAME HERE!
 
@@ -86,7 +87,7 @@ class SendButton(Button):
     def __init__(self,view):
         super(SendButton,self).__init__()
         self.view=view
-    def fun(self,x=None,y=None):
+    def fun(self,x=0,y=-10):
         self.view.send_msg()
         
         
@@ -236,7 +237,7 @@ class View:
         '''
         print(msg) #Debug - print message
         show_this_msg=self.partner_name+' says:\r'+ msg
-        
+          
         self.msg_queue.insert(0,self.text1.new_msg)
         self.display_msg()
         
@@ -250,18 +251,22 @@ class View:
         This method should update the messages displayed in the screen.
         You can get the messages you want from self.msg_queue
         '''
-        self.writer0.clear()
+
+        for i in range (5):
+            self.writer0.clear()
+            self.writer0.write(self.msg_queue[0])
         #writer1.clear()
         #writer2.clear()
         #writer3.clear()
         #writer4.clear()
         
-        self.writer0.write(self.msg_queue[0])
+        
         #writer1.write(self.msg_queue[1])
         #writer2.write(self.msg_queue[2])
         #writer3.write(self.msg_queue[3])
         #writer4.write(self.msg_queue[4])
 
+        
     def get_client(self):
         return self.my_client
 ##############################################################
