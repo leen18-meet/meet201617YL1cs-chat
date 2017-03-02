@@ -56,7 +56,7 @@ class TextBox (TextInput):
 
     def write_msg(self):
         self.writer.penup()
-        self.writer.goto(-50,50)
+        self.writer.goto(0,0)
         self.writer.pendown()
         self.writer.clear()
         self.writer.write(self.new_msg)
