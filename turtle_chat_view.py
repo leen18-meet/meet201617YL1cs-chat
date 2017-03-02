@@ -56,7 +56,7 @@ class TextBox (TextInput):
 
     def write_msg(self):
         self.writer.penup()
-        self.writer.goto(0,0)
+        self.writer.goto(-50,50)
         self.writer.pendown()
         self.writer.clear()
         self.writer.write(self.new_msg)
@@ -84,10 +84,10 @@ class TextBox (TextInput):
 
 
 class SendButton(Button):
-    def __init__(self,view):
+    def __init__(self,view,pos=(100,-25)):
         super(SendButton,self).__init__()
         self.view=view
-    def fun(self,x=0,y=-10):
+    def fun(self,x=None,y=None):
         self.view.send_msg()
         
         
@@ -152,6 +152,7 @@ class View:
         #   self.msg_queue.insert(0,a_msg_string)
         #or at the end of the list using
         #   self.msg_queue.append(a_msg_string)
+        
         self.msg_queue=[]
         ###
         self.writer0=turtle.clone()
@@ -168,7 +169,7 @@ class View:
         writer4=turtle.clone()
         writer4.goto(_LINE_SPACING +10)
         '''
-        
+        text1=TextBox()
         self.text1=TextBox()
         self.Button1=SendButton(self)
         
@@ -202,6 +203,7 @@ class View:
         It should call self.display_msg() to cause the message
         display to be updated.
         '''
+        
         self.my_client.send(self.text1.new_msg)
         self.msg_queue.insert(0,self.text1.new_msg)
         self.text1.clear_msg()
@@ -238,7 +240,7 @@ class View:
         print(msg) #Debug - print message
         show_this_msg=self.partner_name+' says:\r'+ msg
           
-        self.msg_queue.insert(0,self.text1.new_msg)
+        self.msg_queue.insert(0,msg)
         self.display_msg()
         
         #Add the message to the queue either using insert (to put at the beginning)
@@ -252,9 +254,9 @@ class View:
         You can get the messages you want from self.msg_queue
         '''
 
-        for i in range (5):
-            self.writer0.clear()
-            self.writer0.write(self.msg_queue[0])
+        #for i in range (5):
+        self.writer0.clear()
+        self.writer0.write(self.msg_queue[0])
         #writer1.clear()
         #writer2.clear()
         #writer3.clear()
